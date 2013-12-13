@@ -113,7 +113,8 @@ class NPRAPIWordpress extends NPRAPI {
 				$exists = new WP_Query( array( 'meta_key' => NPR_STORY_ID_META_KEY, 
 	                                       'meta_value' => $story->id,
 	        															 'post_type' => $pull_post_type,
-	        															 'post_status' => 'any' ));
+	        															 'post_status' => 'any',
+	        															 'ignore_sticky_posts' => true ));
 
 	        //set the mod_date and pub_date to now so that for a new story we will fail the test below and do the update
 	        $post_mod_date = strtotime(date('Y-m-d H:i:s'));
