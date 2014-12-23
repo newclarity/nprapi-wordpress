@@ -320,6 +320,30 @@ function post_to_nprml_story( $post ) {
             );
 		  }
 		}
+    if ($audio_meta = get_option('ds_npr_api_push_audio_meta')) {
+	  if ($custom_audios = get_metadata('post', $post->ID, $audio_meta)) {
+	    foreach($custom_audios as $audio) {
+	      $story[] = array(
+            'tag' => 'audio',
+            'children' => array(
+              array(
+                'tag' => 'duration',
+                'text' => 10,
+              ),
+              array(
+                'tag' => 'format',
+                'children' => array(
+                  array(
+                    'tag' => 'mp3',
+                    'text' => trim($audio),
+                  ),
+                ),
+              ),
+            ),
+          );
+	    }
+	  }
+	}
   return $story;
 }
 

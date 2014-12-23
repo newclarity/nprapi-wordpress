@@ -80,7 +80,10 @@ function ds_npr_settings_init() {
     
     add_settings_field( 'ds_npr_push_post_type', 'NPR Push Post Type', 'ds_npr_push_post_type_callback', 'ds_npr_api', 'ds_npr_api_settings' );
     register_setting( 'ds_npr_api', 'ds_npr_push_post_type' );
-    
+
+    add_settings_field( 'ds_npr_api_push_audio_meta', 'Push audio meta field', 'ds_npr_api_push_audio_meta_callback', 'ds_npr_api', 'ds_npr_api_settings' );
+    register_setting( 'ds_npr_api', 'ds_npr_api_push_audio_meta' );
+
     add_settings_field( 'ds_npr_story_default_permission', 'NPR Permissions', 'ds_npr_push_story_permissions_callback', 'ds_npr_api', 'ds_npr_api_settings' );
     register_setting( 'ds_npr_api', 'ds_npr_story_default_permission' );
 
@@ -177,6 +180,11 @@ function ds_npr_api_pull_url_callback() {
 function ds_npr_api_push_url_callback() {
     $option = get_option( 'ds_npr_api_push_url' );
     echo "<input type='text' value='$option' name='ds_npr_api_push_url' style='width: 300px;' />"; 
+}
+
+function ds_npr_api_push_audio_meta_callback() {
+    $option = get_option( 'ds_npr_api_push_audio_meta' );
+    echo "<input type='text' value='$option' name='ds_npr_api_push_audio_meta' />";
 }
 
 function ds_npr_api_org_id_callback() {
